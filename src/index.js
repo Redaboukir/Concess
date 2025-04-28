@@ -664,10 +664,8 @@ app.post('/create-checkout-session', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Serveur démarré sur le port ${PORT}`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Serveur démarré sur le port ${process.env.PORT || 3000}`);
 });
 
 // Exportation du routeur (inutile si vous n'utilisez pas ce fichier comme un module)
