@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href=".\home.css">
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    /* Style pour la classe profile-image */
+    .profile-image {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    /* Style pour la classe username */
+    .username {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 0;
+      color: white;
+    }
+
+    .sidebar {
+      width: 300px;
+      transition: width 0.3s ease;
+    }
+
+    .sidebar.close {
+      width: 88px;
+    }
+
+    .main-content {
+      width: calc(100% - 300px);
+      transition: width 0.3s ease;
+    }
+
+    .sidebar.close ~ .main-content {
+      width: calc(100% - 88px);
+    }
+
+    /* Styles par défaut pour le texte et les images */
+    .description img {
+      width: 100%;
+    }
+
+    /* Carrousel des logos */
+    .swiper-slide img {
+      width: 100px;
+    }
+
+    /* Media queries pour tablette */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 88px;
+      }
+
+      .main-content {
+        width: calc(100% - 88px);
+      }
+
+      .car-options-container {
+        flex-direction: column;
+      }
+
+      .car-option {
+        width: 100%;
+        margin: 10px 0;
+      }
+    }
+
+    /* Media queries pour mobile */
+    @media (max-width: 480px) {
+      .sidebar {
+        width: 60px;
+      }
+
+      .main-content {
+        width: calc(100% - 60px);
+      }
+
+      .profile-image {
+        width: 30px;
+        height: 30px;
+      }
+
+      .username {
+        font-size: 14px;
+      }
+
+      .car-option {
+        width: 100%;
+        margin: 5px 0;
+      }
+
+      .swiper-slide img {
+        width: 70px;
+      }
+
+      .description p {
+        font-size: 12px;
+        padding: 5px;
+      }
+
+      .search-box {
+        padding: 5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="top-navbar">
+      <ul class="top-nav-links">
+        <li><a href="Apropos">À Propos</a></li>
+        <li><a href="/connexion">Admin</a></li>
+        <li><a href="support">Contact</a></li>
+      </ul>
+
+      <div class="social-links">
+        <img src="logo.jpg" width="100px">
+      </div>
+
+      <!-- Image de profil et nom d'utilisateur -->
+      <div class="user-info">
+        <img src="{{ userImage }}" alt="Photo de profil" class="profile-image">
+        <p class="username">{{ username }}</p>
+      </div>
+    </nav>
+  </header>
+
+  <nav class="sidebar open">
+    <header>
+      <div class="image-text">
+        <span class="image">
+          <img src="logo.jpg" alt="">
+        </span>
+
+        <div class="text logo-text">
+          <span class="name">Yvelines-Auto</span>
+          <span class="profession">Concessionnaire Auto</span>
+        </div>
+      </div>
+
+      <i class='bx bx-chevron-right toggle'></i>
+    </header>
+
+    <div class="menu-bar">
+      <div class="menu">
+        <form action="/search" method="GET" class="search-form" id="searchForm">
+          <li class="search-box">
+            <i class='bx bx-search icon'></i>
+            <input type="text" id="brand" name="brand" required>
+          </li>
+        </form>
+
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a href="home">
+              <i class='bx bx-home-alt icon'></i>
+              <span class="text nav-text">Accueil</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="/favorites">
+              <i class='bx bx-heart icon'></i>
+              <span class="text nav-text">Likes</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="support">
+              <i class='bx bx-support icon'></i>
+              <span class="text nav-text">Support</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bottom-content">
+        <li class="logout">
+          <a href="/logout">
+            <i class='bx bx-log-out icon'></i>
+            <span class="text nav-text">Logout</span>
+          </a>
+        </li>
+
+        <li class="mode">
+          <div class="sun-moon">
+            <i class='bx bx-moon icon moon'></i>
+            <i class='bx bx-sun icon sun'></i>
+          </div>
+          <span class="mode-text text">Dark mode</span>
+
+          <div class="toggle-switch">
+            <span class="switch"></span>
+          </div>
+        </li>
+      </div>
+    </div>
+  </nav>
+
+  <section class="main-content">
+    <div class="car-carousel swiper-container">
+      <div class="swiper-wrapper">
+        <!-- Swiper slides with car brands -->
+        <div class="swiper-slide">
+          <a href="http://localhost:3000/search?brand=renault">
+            <img src="https://www.cdnlogo.com/logos/r/38/renault-2.svg" width="100px">
+          </a>
+        </div>
+        <!-- Add more car brands here -->
+      </div>
+    </div>
+
+    <div class="description">
+      <img src="concess.jpg" alt="Description de l'image">
+      <div class="text">
+        <p>Découvrez l'excellence automobile chez Yvelines-Auto...</p>
+      </div>
+    </div>
+
+    <div class="car-options">
+      <div class="car-options-container">
+        <div class="car-option">
+          <a href="/voitures-disponibles">
+            <img src="vendeur1.jpg" alt="Buy a Car">
+            <div class="car-option-overlay">
+              <h3>Acheter votre voiture de rêves</h3>
+            </div>
+          </a>
+        </div>
+
+        <div class="car-option" onclick="afficherMessage()">
+          <img src="loca.jpg" alt="Rent a Car">
+          <div class="car-option-overlay">
+            <h3>Reprise de voiture</h3>
+          </div>
+        </div>
+
+        <a href="/datavoiture" class="car-option">
+          <img src="oca.jpg" alt="Sell Your Car">
+          <div class="car-option-overlay">
+            <h3>Vendez votre voiture</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var mySwiper = new Swiper('.car-carousel', {
+        slidesPerView: 'auto',
+        spaceBetween: 10,
+        loop: true,
+        autoplay: {
+          delay: 1000,
+          disableOnInteraction: false,
+        },
+      });
+    });
+
+    document.getElementById('searchForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const searchTerm = document.getElementById('brand').value.trim();
+      if (searchTerm) {
+        window.location.href = `/search?brand=${encodeURIComponent(searchTerm)}`;
+      }
+    });
+
+    document.getElementById('brand').addEventListener('keypress', function (event) {
+      if (event.key === 'Enter') {
+        document.getElementById('searchForm').dispatchEvent(new Event('submit'));
+      }
+    });
+
+    function afficherMessage() {
+      alert("En cours de préparation !");
+    }
+  </script>
+</body>
+
+</html>

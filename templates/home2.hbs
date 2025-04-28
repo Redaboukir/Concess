@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="home2.css">
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    .sidebar {
+      width: 300px; /* Largeur initiale de la sidebar ouverte */
+      transition: width 0.3s ease; /* Animation fluide de la transition */
+    }
+
+    .sidebar.close {
+      width: 88px; /* Largeur minimale de la sidebar fermée */
+    }
+
+    .main-content {
+      width: calc(100% - 250px); /* Largeur de la partie droite lorsque la sidebar est ouverte */
+      transition: width 0.3s ease; /* Animation fluide de la transition */
+    }
+
+    .sidebar.close ~ .main-content {
+      width: calc(100% - 88px); /* Largeur de la partie droite lorsque la sidebar est fermée */
+    }
+  </style>
+</head>
+
+<body>
+  <body>
+
+<header>
+  <nav class="top-navbar">
+    
+    <ul class="top-nav-links">
+      <li><a href="Apropos">À Propos</a></li>
+      <li><a href="/connexion">Admin</a></li>
+      <li><a href="login">Contact</a></li>
+    </ul>
+
+    <div class="social-links">
+    
+
+      <img src="logo.jpg" width="100px">
+    </div>
+        <div class="auth-links">
+    <button class="btn-53" onclick="redirectToLogin()">
+  <div class="original">Login</div>
+  <div class="letters">
+    <span>L</span>
+    <span>O</span>
+    <span>G</span>
+    <span>I</span>
+    <span>N</span>
+  </div>
+</button>
+
+<script>
+  function redirectToLogin() {
+    window.location.href = "login";
+  }
+</script>
+
+   <button class="btn-54" onclick="redirectToinscription()">
+  <div class="original">Signup</div>
+  <div class="letters">
+    
+    <span>S</span>
+    <span>I</span>
+    <span>G</span>
+    <span>N</span>
+    <span>U</span>
+    <span>P</span>
+  </div>
+</button>
+<script>
+  function redirectToinscription() {
+    window.location.href = "inscription";
+  }
+</script>
+
+    </div>
+  </nav>
+</header>
+
+  <nav class="sidebar open">
+    <!-- Contenu de la sidebar -->
+    <header>
+      <div class="image-text">
+        <span class="image">
+          <img src="logo.jpg" alt="">
+        </span>
+
+        <div class="text logo-text">
+          <span class="name">Yvelines-Auto</span>
+          <span class="profession">Concessionnaire Auto</span>
+        </div>
+      </div>
+
+      <i class='bx bx-chevron-right toggle'></i>
+    </header>
+
+    <div class="menu-bar">
+      <div class="menu">
+
+       <form action="/search" method="GET" class="search-form" id="searchForm">
+       <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input type="text" id="brand" name="brand"  required>
+                </li>
+</form>
+
+
+
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a href="home">
+              <i class='bx bx-home-alt icon'></i>
+              <span class="text nav-text">Acceuil</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="/favorites">
+              <i class='bx bx-heart icon'></i>
+              <span class="text nav-text">Likes</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="login">
+              <i class='bx bx-support icon'></i>
+              <span class="text nav-text">Support</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+<div class="bottom-content">
+  <li class="logout">
+    <a href="/logout"> <!-- Lien vers la route de déconnexion -->
+      <i class='bx bx-log-out icon'></i>
+      <span class="text nav-text">Logout</span>
+    </a>
+  </li>
+
+
+
+  <li class="mode">
+    <div class="sun-moon">
+      <i class='bx bx-moon icon moon'></i>
+      <i class='bx bx-sun icon sun'></i>
+    </div>
+    <span class="mode-text text">Dark mode</span>
+
+    <div class="toggle-switch">
+      <span class="switch"></span>
+    </div>
+  </li>
+</div>
+
+    </div>
+
+  </nav>
+
+  <section class="main-content">
+        <div class="car-carousel swiper-container">
+            <div class="swiper-wrapper">
+                <!-- Chaque image est entourée d'une div swiper-slide -->
+                <div class="swiper-slide">
+                    <a href="http://localhost:5000/search?brand=renault">
+                        <img src="https://www.cdnlogo.com/logos/r/38/renault-2.svg" width="100px">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="http://localhost:5000/search?brand=peugeot">
+                        <img src="https://www.cdnlogo.com/logos/p/58/peugeot.svg" width="100px">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="http://localhost:5000/search?brand=tesla">
+                        <img src="https://www.cdnlogo.com/logos/t/25/tesla.svg" width="70px">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="http://localhost:5000/search?brand=mercedes">
+                        <img src="https://www.cdnlogo.com/logos/m/35/mercedes-benz.svg" width="100px">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="http://localhost:5000/search?brand=kia">
+                        <img src="https://www.cdnlogo.com/logos/k/45/kia.svg" width="100px">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="http://localhost:5000/search?brand=bmw">
+                        <img src="https://www.cdnlogo.com/logos/b/27/bmw.svg" width="100px">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="http://localhost:5000/search?brand=citroen">
+                        <img src="https://www.cdnlogo.com/logos/c/53/citroen.svg" width="100px">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="http://localhost:5000/search?brand=skoda">
+                        <img src="https://www.cdnlogo.com/logos/s/38/skoda.svg" width="100px">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="http://localhost:5000/search?brand=volkswagen">
+                        <img src="https://www.cdnlogo.com/logos/v/35/volkswagen.svg" width="100px">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="http://localhost:5000/search?brand=fiat">
+                        <img src="https://www.cdnlogo.com/logos/f/9/fiat.svg" width="130px">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="http://localhost:5000/search?brand=opel">
+                        <img src="https://www.cdnlogo.com/logos/o/70/opel.svg" width="130px">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="http://localhost:5000/search?brand=seat">
+                        <img src="https://www.cdnlogo.com/logos/s/40/seat.svg" width="100px">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="http://localhost:5000/search?brand=dacia">
+                        <img src="https://www.cdnlogo.com/logos/d/32/dacia.svg" width="130px">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="http://localhost:5000/search?brand=audi">
+                        <img src="https://www.cdnlogo.com/logos/a/48/audi33.svg" width="150px">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="http://localhost:5000/search?brand=ford">
+                        <img src="https://www.cdnlogo.com/logos/f/80/ford.svg" width="150px">
+                    </a>
+                </div>
+            </div>
+        </div>
+<div class="description">
+  <img src="concess.jpg" alt="Description de l'image">
+  <div class="overlay"></div>
+  <div class="text">
+    <p>Découvrez l'excellence automobile chez Yvelines-Auto. Explorez notre vaste sélection de véhicules neufs et d'occasion, alliant performance, confort et élégance. Notre équipe passionnée est là pour vous guider dans le choix de la voiture parfaite pour votre style de vie. Profitez d'une expérience d'achat et de ventes exceptionnelle et faites de chaque trajet une aventure mémorable avec Yvelines-Auto.</p>
+  </div>
+</div>
+
+
+
+        
+      <div class="car-options">
+    <div class="car-options-container">
+       <div class="car-option">
+        <style>
+          .car-option{
+            margin-left: 5%;
+          }
+        </style>
+    <a href="/voitures-disponibles">
+        <img src="vendeur1.jpg" alt="Buy a Car">
+        <div class="car-option-overlay">
+            <h3>Acheter votre voiture de rêves</h3>
+        </div>
+    </a>
+</div>
+
+        </div>
+        <div class="car-option">
+            <img src="loca.jpg" alt="Rent a Car">
+            <div class="car-option-overlay">
+                <h3>Reprise de voiture</h3>
+            </div>
+        </div>
+       <a href="/login" class="car-option">
+    <img src="oca.jpg" alt="Sell Your Car">
+    <div class="car-option-overlay">
+        <h3>Vendez votre voiture</h3>
+    </div>
+</a>
+
+        </div>
+    </div>
+</div>
+
+    </section>
+
+    <!-- Inclure Swiper JS après votre contenu HTML -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Initialiser Swiper après le chargement de la page
+        document.addEventListener('DOMContentLoaded', function () {
+            var mySwiper = new Swiper('.car-carousel', {
+                // Options du carrousel
+                slidesPerView: 'auto',
+                spaceBetween: 10,
+                loop: true,
+                autoplay: {
+                    delay: 1000, // Délai entre chaque transition (en millisecondes)
+                    disableOnInteraction: false, // Empêcher l'autoplay de s'arrêter lors de l'interaction de l'utilisateur
+                },
+            });
+        });
+    </script>
+    <script>
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Empêche le comportement par défaut du formulaire
+        const searchTerm = document.getElementById('brand').value.trim(); // Récupère la valeur du champ de recherche en retirant les espaces
+        if (searchTerm) {
+            window.location.href = `/search?brand=${encodeURIComponent(searchTerm)}`; // Redirige vers la page de recherche avec le terme de recherche dans l'URL
+        }
+    });
+
+    // Ajoutez cet événement pour soumettre le formulaire lorsque l'utilisateur appuie sur Entrée
+    document.getElementById('brand').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            document.getElementById('searchForm').dispatchEvent(new Event('submit'));
+        }
+    });
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const bmwLogo = document.getElementById('bmw-logo');
+
+        bmwLogo.addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            try {
+                const response = await fetch('/get-bmw-cars', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erreur lors de la récupération des voitures BMW');
+                }
+
+                const cars = await response.json();
+                // Utilisez les données des voitures BMW récupérées pour afficher ou faire ce que vous voulez
+                console.log(cars);
+            } catch (error) {
+                console.error(error);
+            }
+        });
+    });
+</script>
+
+</script>
+
+  <script src="app.js"></script> 
+</body>
+
+</html>

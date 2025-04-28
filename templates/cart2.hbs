@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement</title>
+    <link rel="stylesheet" href="cart.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .car-details {
+            flex: 1;
+            text-align: center;
+        }
+        .payment-form {
+            flex: 1;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: 20px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 8px;
+        }
+    </style>
+    <meta http-equiv="Content-Security-Policy" content="connect-src 'self' https://api.stripe.com https://*.stripe.com;">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <!-- Section d'informations sur la voiture -->
+    <div class="car-details">
+        <h2>Voiture à acheter</h2>
+        <div class="car-info">
+            <p>Marque: {{car.brand}}</p>
+            <p>Modèle: {{car.model}}</p>
+            <img src="{{car.image}}" alt="{{car.brand}} {{car.model}}">
+        </div>
+    </div>
+
+    <!-- Formulaire de paiement -->
+    <div class="payment-form">
+        <h2>Informations de paiement</h2>
+        <div class="input-group">
+            <label for="full-name">Nom complet</label>
+            <input type="text" id="full-name" name="full-name" required>
+        </div>
+        <div class="input-group">
+            <label for="email">Adresse e-mail</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="input-group">
+            <label for="phone">Numéro de téléphone</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="input-group">
+            <label for="card-element">Détails de la carte</label>
+            <div id="card-element">
+                <!-- Les champs de carte seront ajoutés ici par Stripe.js -->
+            </div>
+        </div>
+        <div id="error-message"></div>
+        Montant a payer : <strong>100e</strong>
+        <button id="submit-payment">Payer</button>
+    </div>
+
+    <script>
+        var stripe = Stripe('pk_test_51PKzpiBKj8o7hpKqobfJjnb4bhvXb9VTFgnLV2jH83Qq3TnQmlK2ezOjqElBAmMlRSNpI0b2FvsiQsMTs0UfO8sa00CqUEwtBC');
+        var elements = stripe.elements();
+        var cardElement = elements.create('card');
+        cardElement.mount('#card-element');
+
+        document.getElementById('submit-payment').addEventListener('click', function(event) {
+            event.preventDefault(); // Empêcher le comportement par défaut du formulaire
+            stripe.createPaymentMethod({
+                type: 'card',
+                card: cardElement,
+                billing_details: {
+                    name: document.getElementById('full-name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value
+                }
+            }).then(function(result) {
+                if (result.error) {
+                    var errorElement = document.getElementById('error-message');
+                    errorElement.textContent = result.error.message;
+                } else {
+                    window.location.href = "/paiement-reussi";
+                }
+            });
+        });
+
+        var carData = localStorage.getItem('selectedCar');
+        if (carData) {
+            var car = JSON.parse(carData);
+            document.querySelector('.car-details .car-info').innerHTML = `
+                <p>Marque: ${car.brand}</p>
+                <p>Modèle: ${car.model}</p>
+                <img src="${car.image}" alt="${car.brand} ${car.model}">
+            `;
+        }
+    </script>
+</body>
+</html>
